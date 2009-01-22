@@ -1,0 +1,77 @@
+Rotoscop
+========
+
+Rotoscop is a minimalistic CMS that allows you to create pages and put
+elements inside this page, with different styles and format.
+
+------------------------------------------------------------------------------
+   
+
+To see all available tasks for Rotoscop run:
+
+rake -T slices:rotoscop
+
+------------------------------------------------------------------------------
+
+Instructions for installation:
+
+file: config/init.rb
+
+# add the slice as a regular dependency
+
+dependency 'rotoscop'
+
+# if needed, configure which slices to load and in which order
+
+Merb::Plugins.config[:merb_slices] = { :queue => ["Rotoscop", ...] }
+
+# optionally configure the plugins in a before_app_loads callback
+
+Merb::BootLoader.before_app_loads do
+  
+  Merb::Slices::config[:rotoscop][:option] = value
+  
+end
+
+file: config/router.rb
+
+# example: /rotoscop/:controller/:action/:id
+
+add_slice(:Rotoscop)
+
+# example: /:lang/:controller/:action/:id
+
+add_slice(:Rotoscop, :path => ':lang')
+
+# example: /:controller/:action/:id
+
+slice(:Rotoscop)
+
+Normally you should also run the following rake task:
+
+rake slices:rotoscop:install
+
+------------------------------------------------------------------------------
+
+You can put your application-level overrides in:
+
+host-app/slices/rotoscop/app - controllers, models, views ...
+
+Templates are located in this order:
+
+1. host-app/slices/rotoscop/app/views/*
+2. gems/rotoscop/app/views/*
+3. host-app/app/views/*
+
+You can use the host application's layout by configuring the
+rotoscop slice in a before_app_loads block:
+
+Merb::Slices.config[:rotoscop] = { :layout => :application }
+
+By default :rotoscop is used. If you need to override
+stylesheets or javascripts, just specify your own files in your layout
+instead/in addition to the ones supplied (if any) in 
+host-app/public/slices/rotoscop.
+
+In any case don't edit those files directly as they may be clobbered any time
+rake rotoscop:install is run.
