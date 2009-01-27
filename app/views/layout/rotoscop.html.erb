@@ -2,15 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Fresh Rotoscop Slice</title>
-    <link href="<%= public_path_for :stylesheet, 'master.css' %>" type="text/css" charset="utf-8" rel="stylesheet" media="all" />
-    <script src="<%= public_path_for :javascript, 'master.js' %>" type="text/javascript" charset="utf-8"></script>
+    <title>Rotoscop</title>
+	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'screen.css' %>" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'print.css' %>" type="text/css" media="print">
+	<!--[if IE]>
+	  <link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'ie.css' %>" type="text/css" media="screen, projection">
+	<![endif]-->
+	
+	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'plugins/fancy-type/screen.css' %>" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'forms.css' %>" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'master.css' %>" type="text/css" media="screen, projection">
+
+    <script src="<%= rotoscop_javascript_path 'master.js' %>" type="text/javascript" charset="utf-8"></script>
   </head>
-  <!-- you can override this layout at slices/rotoscop/app/views/layout/rotoscop.html.erb -->
+
   <body class="rotoscop-slice">
-  <div id="container">
-	  <h1>Rotoscop Slice</h1>
-    <div id="main"><%= catch_content :for_layout %></div>
+
+  <div class="container prepend-top">
+	<div id="header" class="span-24 last">
+		<h1 id="rotoscop"><img src="<%= rotoscop_image_path 'logo.png' %>" alt="Rotoscop Logo" id="header-image" />Rotoscop</h1>
+    </div>
+
+	<hr />
+	<div id="subheader" class="span-24 last">
+		<h3 class="alt">Build your live-action pages.</h3>
+	</div>
+	
+	<hr />
+	
+	<%= catch_content :for_layout %>
+	
+	<div id="footer"></div>
   </div>
   </body>
 </html>

@@ -28,6 +28,7 @@ if defined?(Merb::Plugins)
     # Stub classes loaded hook - runs before LoadClasses BootLoader
     # right after a slice's classes have been loaded internally.
     def self.loaded
+      ::Rotoscop::Helpers.setup
     end
     
     # Initialization hook - runs before AfterAppLoads BootLoader
@@ -52,12 +53,7 @@ if defined?(Merb::Plugins)
     # @note prefix your named routes with :rotoscop_
     #   to avoid potential conflicts with global named routes.
     def self.setup_router(scope)
-      # example of a named route
-      scope.match('/index(.:format)').to(:controller => 'main', :action => 'index').name(:index)
-      # the slice is mounted at /rotoscop - note that it comes before default_routes
-      scope.match('/').to(:controller => 'main', :action => 'index').name(:home)
-      # enable slice-level default routes by default
-      scope.default_routes
+      ::Rotoscop::Router.setup(scope)
     end
     
   end
@@ -76,7 +72,26 @@ if defined?(Merb::Plugins)
   # Or just call setup_default_structure! to setup a basic Merb MVC structure.
   Rotoscop.setup_default_structure!
   
-  # Add dependencies for other Rotoscop classes below. Example:
-  # dependency "rotoscop/other"
+  use_orm :datamapper
+  
+  merb_version = ">= 1.0.7.1"
+  dependency 'merb-assets',     merb_version
+  dependency 'merb-helpers',    merb_version
+  dependency 'merb_datamapper', merb_version
+  dependency 'merb-builder', "0.9.8"
+  
+  dm_gems_version   = ">= 0.9.9"
+  dependency "dm-core", dm_gems_version         
+  dependency "dm-aggregates", dm_gems_version   
+  dependency "dm-migrations", dm_gems_version   
+  dependency "dm-timestamps", dm_gems_version   
+  dependency "dm-types", dm_gems_version        
+  dependency "dm-validations", dm_gems_version
+  dependency "dm-tags", dm_gems_version
+  dependency "dm-is-tree", dm_gems_version
+  
+  # Add dependencies for other Rotoscop classes below.
+  require "rotoscop/helpers"
+  require "rotoscop/router"
   
 end
