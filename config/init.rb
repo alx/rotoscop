@@ -40,4 +40,8 @@ Merb::Config.use do |c|
   # so enable template reloading by default.
   c[:reload_templates] = true
   
+  c[:compass] = {
+    :stylesheets => 'app/stylesheets',
+    :compiled_stylesheets => 'public/stylesheets/compiled'
+  }
 end

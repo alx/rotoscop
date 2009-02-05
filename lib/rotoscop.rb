@@ -90,6 +90,10 @@ if defined?(Merb::Plugins)
   dependency "dm-tags", dm_gems_version
   dependency "dm-is-tree", dm_gems_version
   
+  dependency "haml", ">=2.1.0" 
+  dependency "merb-haml", merb_version
+  dependency "chriseppstein-compass", :require_as => 'compass'
+  
   # Add dependencies for other Rotoscop classes below.
   require "rotoscop/helpers"
   require "rotoscop/router"

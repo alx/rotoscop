@@ -1,0 +1,42 @@
+@import compass/reset.sass
+@import blueprint/screen.sass
+
+body
+  +blueprint-typography
+
+  hr
+    :border 1px dotted silver
+
+#container
+  +container
+
+  :background-repeat no-repeat
+  :background-attachment fixed
+  :background-position 80% 5%
+
+#header-container
+  +span(23)
+  :padding-top 15px
+
+  h2
+    +quiet
+    :margin-left .25em
+
+#left-container
+  +column(8)
+
+  h3
+    :margin-left .25em
+    :color red
+
+#main-container
+  +column(15, "last")
+  :padding-left 1em
+  :border-left 1px dotted silver
+
+#footer-container
+  +column(23, "last")
+
+.right
+  +quiet
+  :text-align right

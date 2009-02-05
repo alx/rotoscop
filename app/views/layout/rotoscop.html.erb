@@ -3,22 +3,13 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Rotoscop</title>
-	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'screen.css' %>" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'print.css' %>" type="text/css" media="print">
-	<!--[if IE]>
-	  <link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'ie.css' %>" type="text/css" media="screen, projection">
-	<![endif]-->
-	
-	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'plugins/fancy-type/screen.css' %>" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'forms.css' %>" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'master.css' %>" type="text/css" media="screen, projection">
-
+	<link rel="stylesheet" href="<%= rotoscop_stylesheet_path 'compiled/master.css' %>" type="text/css" media="screen" charset="utf-8" />
     <script src="<%= rotoscop_javascript_path 'master.js' %>" type="text/javascript" charset="utf-8"></script>
   </head>
 
   <body class="rotoscop-slice">
 
-  <div class="container prepend-top">
+  <div id="container" class="prepend-top">
 	<div id="header" class="span-24 last">
 		<h1 id="rotoscop"><img src="<%= rotoscop_image_path 'logo.png' %>" alt="Rotoscop Logo" id="header-image" />Rotoscop</h1>
     </div>
